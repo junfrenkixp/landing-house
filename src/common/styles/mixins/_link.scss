@@ -1,0 +1,11 @@
+@mixin link-green() {
+  color: var(--color-green);
+  @include transition;
+
+  &:hover {
+    color: var(--color-green-hover);
+  }
+  &:active {
+    color: var(--color-green-active);
+  }
+}

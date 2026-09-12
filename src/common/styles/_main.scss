@@ -1,0 +1,23 @@
+// Base for layout
+@import './base/fonts';
+@import './base/utils';
+@import './base/common';
+
+// Config for scss
+@import "./variables/colors";
+@import './variables/media';
+@import './variables/other';
+
+// Basic mixins
+@import './mixins/media';
+@import './mixins/basic';
+@import './mixins/container';
+
+// Mixin components
+
+@import './mixins/button';
+@import './mixins/link';
+@import './mixins/range-slider';
+@import './mixins/rating-users';
+@import './mixins/loader';
+

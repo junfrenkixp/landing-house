@@ -1,0 +1,126 @@
+@import "../variables/media";
+
+// 1920 <
+@mixin pre-media-desktop-xxl() {
+  @media (max-width: $media-desktop-xxl - 1px) {
+    @content;
+  }
+}
+
+// 1440 <
+@mixin media-desktop-xl() {
+  @media (max-width: $media-desktop-xl) {
+    @content;
+  }
+}
+
+// 1280 <
+@mixin media-desktop-l() {
+  @media (max-width: $media-desktop-l) {
+    @content;
+  }
+}
+
+// 1200 <
+@mixin media-desktop() {
+  @media (max-width: $media-desktop) {
+    @content;
+  }
+}
+
+// 1199 <
+@mixin pre-media-desktop() {
+  @media (max-width: $media-desktop - 1px) {
+    @content;
+  }
+}
+
+// 1024 <
+@mixin media-laptop() {
+  @media (max-width: $media-laptop) {
+    @content;
+  }
+}
+
+// 1023 <
+@mixin pre-media-laptop() {
+  @media (max-width: $media-laptop - 1px) {
+    @content;
+  }
+}
+
+// 992 <
+@mixin media-tablet() {
+  @media (max-width: $media-tablet) {
+    @content;
+  }
+}
+
+// 991 <
+@mixin pre-media-tablet() {
+  @media (max-width: $media-tablet - 1px) {
+    @content;
+  }
+}
+
+// 927 <
+@mixin pre-media-tablet-m() {
+  @media (max-width: $media-tablet-m) {
+    @content;
+  }
+}
+
+// 768 <
+@mixin media-mobile() {
+  @media (max-width: $media-mobile) {
+    @content;
+  }
+}
+
+// 767 <
+@mixin pre-media-mobile() {
+  @media (max-width: $media-mobile - 1px) {
+    @content;
+  }
+}
+
+// 720 <
+@mixin pre-media-mobile-el() {
+  @media (max-width: $media-mobile-el - 1px) {
+    @content;
+  }
+}
+
+// 462 <
+@mixin media-mobile-m() {
+  @media (max-width: $media-mobile-m) {
+    @content;
+  }
+}
+
+// 375 <
+@mixin media-mobile-s() {
+  @media (max-width: $media-mobile-s) {
+    @content;
+  }
+}
+
+// 374 <
+@mixin pre-media-mobile-s() {
+  @media (max-width: $media-mobile-s - 1px) {
+    @content;
+  }
+}
+
+// Device Pixel Ratio mixin
+@mixin dpr($value: 2) {
+  @media /* only for retina displays */
+  only screen and (-webkit-min-device-pixel-ratio: $value),
+  only screen and (min--moz-device-pixel-ratio: $value),
+  only screen and (min-device-pixel-ratio: $value),
+  only screen and (-webkit-min-device-pixel-ratio: $value),
+  only screen and (min-resolution: #{$value * 96}dpi),
+  only screen and (min-resolution: #{$value}dppx) {
+    @content;
+  }
+}

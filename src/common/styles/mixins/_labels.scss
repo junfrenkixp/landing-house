@@ -1,0 +1,47 @@
+@import "./basic";
+
+@mixin label-popular(
+  $bg: linear-gradient(90deg, rgba(3, 25, 228, 0.70) 0%, rgba(122, 0, 244, 0.70) 69.5%),
+  $color: var(--color-white),
+  $icon: true
+) {
+  position: absolute;
+  border-radius: 100px;
+  background: $bg;
+  height: 20px;
+  padding: 0 8px;
+  color: $color;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -.1px;
+  white-space: nowrap;
+
+  @if $icon {
+    &::before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 4px;
+      height: 10px;
+      width: 10px;
+      @include bg-icon('../images/pricing/popular.svg');
+    }
+  }
+}
+
+@mixin item-label($bg: rgba(0, 0, 0, 0.04), $color: #747474, $padding: 1px 8px 2px 8px) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  padding: $padding;
+  border-radius: 10px;
+  background: $bg;
+  color: $color;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 140%;
+}

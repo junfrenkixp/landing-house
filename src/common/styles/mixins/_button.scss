@@ -1,0 +1,732 @@
+@use "./basic" as basic;
+
+:root {
+  --outline-button-color: #393939;
+  --outline-button-color-hover: #575757;
+  --outline-button-color-disabled: rgba(0, 0, 0, 0.33);
+  --outline-button-icon-color-hover: #575757;
+  --outline-button-icon-color-active: #747474;
+
+  --outline-button-font-size: 14px;
+  --outline-button-font-weight: 600;
+  --outline-button-line-height: 24px;
+
+  --outline-button-icon-size: 24px;
+
+  --outline-button-bg: var(--color-white);
+  --outline-button-bg-hover: rgba(0, 0, 0, .04);
+  --outline-button-bg-active: rgba(0, 0, 0, .09);
+
+  --outline-button-border: rgba(0, 0, 0, .09);
+  --outline-button-border-active: rgba(0, 0, 0, .16);
+}
+
+@mixin button() {
+  display: inline-block;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  @include basic.transition;
+
+  &:hover {
+    text-decoration: none;
+  }
+  &[disabled] {
+    opacity: 1;
+  }
+
+  &.is-loading {
+    position: relative;
+    pointer-events: none;
+    color: transparent !important;
+  }
+  &.is-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-bottom-color: var(--color-white);
+    border-radius: 50%;
+    display: inline-block;
+    animation: rotation .5s linear infinite;
+  }
+}
+
+@keyframes rotation {
+  0% { transform: translate(-50%,-50%) rotate(0deg) }
+  100% { transform: translate(-50%,-50%) rotate(360deg) }
+}
+
+@mixin button-primary() {
+  border-radius: 6px;
+}
+@mixin button-secondary() {
+  border-radius: 20px;
+}
+
+@mixin button-green() {
+  color: var(--color-white);
+  background-color: var(--color-green);
+
+  &:hover {
+    background-color: var(--color-green-hover);
+  }
+  &:active {
+    background-color: var(--color-green-active);
+  }
+
+  &[disabled] {
+    background-color: var(--color-light-grey);
+    color: var(--color-dark-grey);
+  }
+}
+
+@mixin button-green-gradient() {
+  color: var(--color-white);
+  background-image: linear-gradient(180deg, #3ab44c 10%, #10aa44 90%);
+  background-size: 150%;
+
+  &:hover {
+    color: var(--color-white);
+    background: linear-gradient(135deg, #33B447 0%, #048430 100%);
+  }
+  &:active {
+    color: var(--color-white);
+    background-position-x: 10px;
+  }
+
+  &[disabled] {
+    background: var(--color-light-grey);
+    color: var(--color-dark-grey);
+  }
+}
+
+@mixin button-green-outline() {
+  border: 1px solid var(--color-green);
+  color: var(--color-green);
+  background-color: transparent;
+
+  &:hover {
+    color: var(--color-green-hover);
+    box-shadow: 0 0 0 1px var(--color-green);
+  }
+  &:active {
+    border: 1px solid var(--color-green-active);
+    color: var(--color-green-active);
+    box-shadow: none;
+  }
+
+  &[disabled] {
+    border-color: var(--color-light-grey);
+    color: var(--color-dark-grey);
+  }
+}
+
+@mixin button-tone(
+  $main-color: #1A7D3D,
+  $main-color-hover: #1A7D3D,
+  $main-color-active: #0F5728,
+  $main-bg-color: #DDFBE1,
+  $main-bg-color-hover: #AAFAB9,
+  $main-bg-color-active: #55F485,
+) {
+  color: $main-color;
+  background-color: $main-bg-color;
+
+  &:hover {
+    color: $main-color-hover;
+    background-color: $main-bg-color-hover;
+  }
+  &:active {
+    color: $main-color-active;
+    background-color: $main-bg-color-active;
+  }
+
+  &[disabled] {
+    color: #949494;
+    background-color: #E8E8E8;
+  }
+}
+
+@mixin button-green-outline-second() {
+  border: 2px solid var(--color-green);
+  color: var(--color-green);
+  background-color: transparent;
+
+  &:hover {
+    border: 2px solid var(--color-green-hover);
+    color: var(--color-white);
+    background-color: var(--color-green-hover);
+  }
+  &:active {
+    border: 2px solid var(--color-green-active);
+    color: var(--color-white);
+    background-color: var(--color-green-active);
+  }
+
+  &[disabled] {
+    border-color: var(--color-light-grey);
+    color: var(--color-dark-grey);
+    background: var(--color-light-grey);
+  }
+}
+
+@mixin button-orange-gradient() {
+  color: var(--color-white);
+  background: linear-gradient(180deg, #f6861f 0%, #fc611f 100%);
+
+  &:not([disabled]):hover {
+    color: var(--color-white);
+    background: linear-gradient(180deg, #f5841d 0%, #dd4b0d 100%);
+  }
+  &:not([disabled]):active {
+    color: var(--color-white);
+    background: linear-gradient(180deg, #ffb340 0%, #ff6711 100%);
+  }
+
+  &[disabled] {
+    opacity: .5;
+    cursor: default;
+  }
+}
+
+@mixin button-orange-outline() {
+  color: var(--color-brick-orange);
+  border: 2px solid var(--color-brick-orange);
+  background-color: transparent;
+
+  &:hover {
+    border-color: var(--color-brick-orange);
+    color: var(--color-white);
+    background-color: var(--color-brick-orange);
+  }
+  &:active {
+    border-color: lighten(#f2680b, 8%);
+    color: var(--color-white);
+    background-color: lighten(#f2680b, 8%);
+  }
+}
+
+@mixin button-red-outline() {
+  border: 1px solid var(--color-berberis-red);
+  color: var(--color-berberis-red);
+  background-color: transparent;
+}
+
+@mixin button-pro-gradient() {
+  color: var(--color-white);
+  background-image: linear-gradient(117.03deg, #4C48FF 0%, #0CBF74 70%);
+  background-size: 150%;
+
+  &:hover {
+    color: var(--color-white);
+    background-position: 70%;
+  }
+  &:active {
+    color: var(--color-white);
+    background-position: 90%;
+  }
+  &[disabled] {
+    background: var(--color-light-grey);
+    color: var(--color-dark-grey);
+  }
+}
+
+@mixin button-pro() {
+  color: var(--color-white);
+  background-color: #4559ef;
+
+  &:hover {
+
+  }
+  &:active {
+
+  }
+  &[disabled] {
+    color: #949494;
+    background-color: #e8e8e8;
+  }
+}
+
+@mixin button-modal($bg-color: #26A954) {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--color-white);
+  background-color: $bg-color;
+  border-radius: 100px;
+
+  &:hover {
+    background-color: var(--color-green-hover);
+  }
+  &:active {
+    background-color: var(--color-green-active);
+  }
+
+  &[disabled] {
+    background-color: var(--color-light-grey);
+    color: var(--color-dark-grey);
+  }
+}
+
+@mixin button-modal-typography($size: 16px) {
+  font-size: $size;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -.16px;
+  text-align: center;
+}
+
+@mixin button-modal-close($bg-color: rgba(0,0,0,0.24), $cross-color: #fff) {
+  background-color: $bg-color;
+  height: 28px;
+  width: 28px;
+
+  &::before,
+  &::after {
+    background-color: $cross-color;
+  }
+  &::before {
+    width: 15px;
+  }
+  &::after {
+    height: 15px;
+  }
+}
+
+@mixin button-popup-close($bg-color: #fff, $cross-color: #4B4B4B) {
+  display: inline-block;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  height: 24px;
+  width: 24px;
+  background-color: $bg-color;
+  outline: none;
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+  @include basic.transition;
+  z-index: 1;
+
+  &:hover {
+    background-color: var(--color-light-grey);
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    @include basic.absolute-center;
+    display: inline-block;
+    background-color: $cross-color;
+    border-radius: 6px;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  }
+  &::before {
+    width: 15px;
+    height: 2px;
+  }
+  &::after {
+    width: 2px;
+    height: 15px;
+  }
+}
+@mixin button-blue-gradient() {
+  color: var(--color-white);
+  border-radius: 100px;
+  background: linear-gradient(91deg, #0319E4 2.37%, #7A00F4 82.34%), #4459EE;
+
+  &:hover {
+    color: var(--color-white);
+    background-position: 100%;
+    background-size: 150%;
+  }
+
+  &[disabled] {
+    background: var(--color-light-grey);
+    color: var(--color-dark-grey);
+  }
+}
+
+@mixin button-white() {
+  color: var(--color-green);
+  border-radius: 100px;
+  background: var(--color-white);
+
+  &:hover {
+    color: var(--color-green);
+    background: var(--color-white);
+  }
+
+  &[disabled] {
+    background: var(--color-light-grey);
+    color: var(--color-dark-grey);
+  }
+}
+
+@mixin header-button(
+  $size: 44px,
+  $radius: 20px,
+  $color,
+  $color-hover: lighten($color, 40%),
+  $color-active: lighten($color, 50%),
+  $color-disabled: lighten($color, 20%),
+  $bg-color,
+  $bg-color-hover: $bg-color,
+  $bg-color-active: $bg-color,
+  $box-shadow: none,
+  $svg-size: 24px,
+  $svg-color: $color
+) {
+  @include button;
+
+  position: relative;
+  display: inline-block;
+  height: $size;
+  min-width: $size;
+
+  color: $color;
+  text-decoration: none;
+  box-shadow: $box-shadow;
+  border: 0;
+  outline: 0;
+  border-radius: $radius;
+  background-color: $bg-color;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+    color: $color-hover;
+    background-color: $bg-color-hover;
+  }
+
+  &:active {
+    text-decoration: none;
+    color: $color-active;
+    background-color: $bg-color-active;
+  }
+
+  &:hover svg {
+    color: $color-hover;
+  }
+
+  &[disabled] {
+    cursor: initial;
+    color: $color-disabled;
+  }
+
+  &[disabled] svg {
+    color: $color-disabled;
+  }
+
+  &[disabled]:hover svg {
+    color: $color-disabled;
+  }
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: $svg-size;
+    width: $svg-size;
+
+    fill: transparent;
+    color: $svg-color;
+  }
+}
+@mixin button-icon-left (
+  $padding-left: 42px,
+  $padding-right: 16px,
+  $icon-left: 10px,
+  $active-color
+) {
+  padding-right: $padding-right;
+  padding-left: $padding-left;
+  position: relative;
+
+  @include breakpoint-touch {
+    padding-right: 0;
+    padding-left: 0;
+    text-indent: -99999em;
+  }
+
+  &:hover svg {
+    color: $active-color;
+  }
+
+  &:active svg {
+    color: $active-color;
+  }
+
+  svg {
+    left: $icon-left;
+    transform: translate(0, -50%);
+    position: absolute;
+    top: 50%;
+    height: 24px;
+    width: 24px;
+    fill: transparent;
+  }
+
+  span {
+    @include breakpoint-touch {
+      display: none;
+    }
+  }
+}
+
+@mixin button-icon-right ($gap: 8px, $padding: 12px 8px) {
+  display: flex;
+  align-items: center;
+  gap: $gap;
+  padding: $padding;
+  position: relative;
+  cursor: pointer;
+
+  svg {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+@mixin button-landing(
+  $size: lg,
+  $color: #000,
+  $colorDisabled: var(--color-dark-grey),
+  $bg: #25E459,
+  $bgHover: #30CA66,
+  $colorHover: $color,
+  $bgFocus: darken(#2AE347, 5%),
+  $colorFocus: $color,
+  $bgActive: darken(#2AE347, 5%),
+  $bgDisabled: var(--color-light-grey)
+) {
+  @if ($size == md) {
+    padding: 12px 24px;
+  }
+  @if ($size == lg) {
+    padding: 15px 32px;
+  }
+  color: $color;
+  background-color: $bg;
+
+  &:hover {
+    background-color: $bgHover;
+    color: $colorHover;
+  }
+  &:focus {
+    background-color: $bgFocus;
+    color: $colorFocus;
+  }
+  &:active {
+    background-color: $bgActive;
+    color: $colorFocus;
+  }
+
+  &[disabled] {
+    background-color: $bgDisabled;
+    color: $colorDisabled;
+  }
+}
+
+@mixin button-lined(
+  $height: 40px,
+  $padding: 9px,
+  $color: var(--color-green),
+  $borderColor: var(--color-green)
+) {
+  border: 1px solid $borderColor;
+  color: $color;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $height;
+  padding: $padding;
+  outline: 0;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: .3s;
+  border-radius: 20px;
+}
+
+@mixin button-green() {
+  color: var(--color-white);
+  background-color: var(--color-green);
+
+  &:hover {
+    background-color: var(--color-green-hover);
+  }
+  &:active {
+    background-color: var(--color-green-active);
+  }
+
+  &[disabled] {
+    background-color: var(--color-light-grey);
+    color: var(--color-dark-grey);
+  }
+}
+
+@mixin button-modal($bg-color: #26A954) {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--color-white);
+  background-color: $bg-color;
+  border-radius: 100px;
+
+  &:hover {
+    background-color: var(--color-green-hover);
+  }
+  &:active {
+    background-color: var(--color-green-active);
+  }
+
+  &[disabled] {
+    background-color: var(--color-light-grey);
+    color: var(--color-dark-grey);
+  }
+}
+
+
+@mixin button-popup-close($bg-color: #fff, $cross-color: #4B4B4B, $hover-bg-color: var(--color-light-grey)) {
+  display: inline-block;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  height: 24px;
+  width: 24px;
+  background-color: $bg-color;
+  outline: none;
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+  @include basic.transition;
+  z-index: 1;
+
+  &:hover {
+    background-color: $hover-bg-color;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: inline-block;
+    background-color: $cross-color;
+    border-radius: 6px;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  }
+  &::before {
+    width: 15px;
+    height: 2px;
+  }
+  &::after {
+    width: 2px;
+    height: 15px;
+  }
+}
+
+@mixin button-modal-close-new(
+  $bg-color: #fff,
+  $cross-color: #4B4B4B,
+  $hover-bg-color: var(--color-light-grey),
+  $hover-cross-color,
+  $active-bg-color,
+  $active-cross-color) {
+  @include button-popup-close($bg-color, $cross-color, $hover-bg-color);
+
+  &:hover {
+    &::before,
+    &::after {
+      background-color: $hover-cross-color;
+    }
+  }
+
+  &:active {
+    background-color: $active-bg-color;
+  }
+
+  &:active {
+    &::before,
+    &::after {
+      background-color: $active-cross-color;
+    }
+  }
+}
+
+@mixin outline-button() {
+  @include button;
+
+  display: flex;
+  align-items: center;
+  padding: 5px 16px;
+  color: var(--outline-button-color);
+  font-size: var(--outline-button-font-size);
+  font-weight: var(--outline-button-font-weight);
+  line-height: var(--outline-button-line-height);
+  border-radius: 100px;
+  border: 1px solid var(--outline-button-border);
+  background-color: var(--outline-button-bg);
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--outline-button-color-hover);
+    background-color: var(--outline-button-bg-hover);
+  }
+
+  &:active {
+    border-color: var(--outline-button-border-active);
+    background-color: var(--outline-button-bg-active);
+  }
+
+  &:disabled {
+    color: var(--outline-button-color-disabled);
+  }
+}
+
+@mixin outline-icon-button() {
+  @include outline-button;
+
+  gap: 6px;
+  padding-left: 10px;
+
+  &:disabled {
+    pointer-events: none;
+  }
+
+  svg {
+    color: var(--outline-button-color);
+    height: var(--outline-button-icon-size);
+    width: var(--outline-button-icon-size);
+  }
+
+  &:hover svg {
+    color: var(--outline-button-icon-color-hover);
+  }
+
+  &:active svg {
+    color: var(--outline-button-icon-color-active);
+  }
+
+  &:disabled svg {
+    color: var(--outline-button-color-disabled);
+  }
+}
+
+@mixin button-focus-outline($outlineColor: #0177DE, $color: #fff) {
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px $color, 0 0 0 4px $outlineColor;
+  }
+}

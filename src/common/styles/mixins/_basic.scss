@@ -1,0 +1,404 @@
+@import "../variables/other";
+
+@mixin rotate($deg: 180deg) {
+  transform: rotate($deg);
+}
+
+@mixin transition($time: .3s, $property: all) {
+  transition: $property $time;
+}
+
+@mixin bg-icon($path) {
+  background-image: url($path);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@mixin bg-img($path) {
+  background-image: url($path);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@mixin bg-mask($path, $position: center, $size: cover) {
+  mask-image: url($path);
+  mask-size: $size;
+  mask-position: $position;
+  mask-repeat: no-repeat;
+}
+
+@mixin flex-center($horizontal: true, $vertical: true) {
+  display: flex;
+
+  @if ($horizontal) {
+    align-items: center;
+  }
+  @if ($vertical) {
+    justify-content: center;
+  }
+}
+
+@mixin absolute-center($horizontal: true, $vertical: true) {
+  position: absolute;
+
+  @if ($horizontal) {
+    left: 50%;
+  }
+  @if ($vertical) {
+    top: 50%;
+  }
+}
+
+@mixin fill($digit: 0, $pos: absolute) {
+  position: $pos;
+  top: $digit;
+  right: $digit;
+  bottom: $digit;
+  left: $digit;
+}
+
+@mixin triangle($width, $dir, $color) {
+  @if $dir == up {
+    width: 0;
+    height: 0;
+    border-left: $width/2 solid transparent;
+    border-right: $width/2 solid transparent;
+    border-bottom: $width/2 solid $color;
+  }
+  @else if $dir == down {
+    width: 0;
+    height: 0;
+    border-left: $width/2 solid transparent;
+    border-right: $width/2 solid transparent;
+    border-top: $width/2 solid $color;
+  }
+  @else if $dir == right {
+    width: 0;
+    height: 0;
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+    border-left: $width solid $color;
+  }
+  @else if $dir == left {
+    width: 0;
+    height: 0;
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+    border-right: $width solid $color;
+  }
+}
+
+@mixin visually-hidden() {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+@mixin bg-image($url, $type: webp, $desktop-sm: true) {
+  $sm: "#{$url}-sm.#{$type}";
+  background-image: url("#{$url}.#{$type}");
+
+  @if $desktop-sm {
+    @include media-desktop {
+      background-image: url($sm);
+    }
+  } @else {
+    @include pre-media-mobile {
+      background-image: url($sm);
+    }
+  }
+
+  @include dpr(2) {
+    $dpr: "@2x";
+    $sm: "#{$url}-sm#{$dpr}.#{$type}";
+    background-image: url("#{$url}#{$dpr}.#{$type}");
+
+    @if $desktop-sm {
+      @include media-desktop {
+        background-image: url($sm);
+      }
+    } @else {
+      @include pre-media-mobile {
+        background-image: url($sm);
+      }
+    }
+  }
+}
+
+@mixin tooltip(
+  $bg: var(--color-black),
+  $color: var(--color-white),
+  $shadow: 0 2px 4px 0 rgba(0, 0, 0, .16),
+  $padding: 12px 16px,
+  $radius: 12px,
+  $display: none
+) {
+  display: $display;
+  padding: $padding;
+  border-radius: $radius;
+  background: $bg;
+  box-shadow: $shadow;
+  color: $color;
+}
+
+@mixin list(
+  $bgUrl: 'icon/list-icon.svg',
+  $color: #575757
+) {
+  list-style: none;
+  padding: 0;
+
+  li {
+    position: relative;
+    padding-left: 32px;
+    color: $color;
+  }
+
+  li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    background-image: url('../images/#{$bgUrl}');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+@mixin radioInputLabel() {
+  display: block;
+  position: relative;
+  padding-left: 33px;
+  cursor: pointer;
+}
+
+@mixin radioInputElement() {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden
+}
+
+@mixin radioInputSpan($borderColor) {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  border: 2px solid $borderColor;
+}
+
+@mixin radioInputCheckedSpan($borderColorChecked) {
+  border: 6px solid $borderColorChecked;
+}
+
+@mixin radioInput($borderColor, $borderColorChecked) {
+  & {
+    @include radioInputElement;
+  }
+
+  & + span {
+    @include radioInputSpan($borderColor);
+  }
+
+  &:checked + span {
+    @include radioInputCheckedSpan($borderColorChecked);
+  }
+}
+
+@mixin radioInputSeparated($borderColor,$borderColorChecked) {
+  & {
+    @include radioInputElement;
+  }
+
+  & + * > label > span:first-of-type {
+    @include radioInputSpan($borderColor);
+  }
+
+  &:checked + * > label > span:first-of-type {
+    @include radioInputCheckedSpan($borderColorChecked);
+  }
+}
+
+@mixin embed-responsive {
+  position: relative;
+  display: block;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+
+  .embed-responsive-item,
+  img,
+  iframe,
+  embed,
+  object,
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border: 0;
+  }
+}
+
+@mixin embed-responsive-16by9 {
+  padding-bottom: 56.25%;
+}
+
+@mixin embed-responsive-4by3 {
+  padding-bottom: 75%;
+}
+
+@mixin box-shadow {
+  box-shadow: 0 3px 30px rgba(0, 0, 0, 0.2);
+}
+
+@mixin box-shadow-sm {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+@mixin ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin text-ellipsis-multiline($font-size, $line-height, $lines-to-show) {
+  display: block;
+  height: $font-size * $line-height * $lines-to-show;
+  font-size: $font-size;
+  line-height: $line-height;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin transition($args...) {
+  @if length($args) == 0 {
+    transition-property: all;
+  } @else {
+    transition-property: $args;
+  }
+  transition-timing-function: $transition-timing-function;
+  transition-duration: $transition-duration;
+}
+
+@mixin spin($color: $primary, $borderSize: 2px, $speed: 1s, $fallbackSize: rgba($primary, 0.5)) {
+  animation: spinAround $speed infinite linear;
+  border: $borderSize solid $fallbackSize;
+  border-radius: 50%;
+  border-top-color: $color;
+  content: "";
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+}
+
+///
+/// @param {string} $direction - up|down|left|right
+/// @param {Size} $size - 4px
+/// @param {color} $face-color [currentColor] - Color for triangle
+/// @param {color} $back-color [transparent] - Color for background
+///
+@mixin triangle($direction, $size, $face-color: currentColor, $back-color: transparent) {
+  width: 0;
+  height: 0;
+  border: solid $back-color;
+  border-width: $size;
+  @if $direction == up or ($direction == down-left or ($direction == down-right)) {
+    border-bottom-color: $face-color;
+  }
+
+  @if $direction == down or ($direction == up-left or ($direction == up-right)) {
+    border-top-color: $face-color;
+  }
+
+  @if $direction == left or ($direction == down-right or ($direction == up-right)) {
+    border-right-color: $face-color;
+  }
+
+  @if $direction == right or ($direction == down-left or ($direction == up-left)) {
+    border-left-color: $face-color;
+  }
+
+  @if $direction == down {
+    border-bottom: none;
+  }
+}
+
+
+@mixin debug-media {
+  @include media-breakpoint-only(xs) {
+    --media: xs;
+  }
+
+  @include media-breakpoint-only(sm) {
+    --media: sm;
+  }
+
+  @include media-breakpoint-only(md) {
+    --media: md;
+  }
+
+  @include media-breakpoint-only(lg) {
+    --media: lg;
+  }
+
+  @include media-breakpoint-only(xl) {
+    --media: xl;
+  }
+
+  @include media-breakpoint-only(xxl) {
+    --media: xxl;
+  }
+}
+
+@mixin generateIconBackgrounds($icons, $x, $xHover) {
+  @each $icon in $icons {
+    $i: index($icons, $icon);
+
+    @if ($i == 1) {
+      .P5DMenu > a[action='#{$icon}'],
+      .P5DMenu > div[action='#{$icon}'] {
+        background-position: #{$x} 10px;
+      }
+
+      .P5DMenu > a[action='#{$icon}']:hover,
+      .P5DMenu > div[action='#{$icon}']:hover {
+        background-position: #{$xHover} 10px;
+      }
+    } @else {
+      $y: -#{($i - 1) * 24px + (($i - 2) * 8px)};
+
+      .P5DMenu > a[action='#{$icon}'],
+      .P5DMenu > div[action='#{$icon}'] {
+        background-position: #{$x} #{$y};
+      }
+
+      .P5DMenu > a[action='#{$icon}']:hover,
+      .P5DMenu > div[action='#{$icon}']:hover {
+        background-position: #{$xHover} #{$y};
+      }
+    }
+  }
+}

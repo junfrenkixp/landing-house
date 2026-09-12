@@ -1,0 +1,269 @@
+$onboarding-modal-size:(
+  'sm': 320px,
+  'md': 376px,
+  'lg': 472px
+);
+$onboarding-modal-padding-size:(
+  'sm': 24px,
+  'md': 24px,
+  'lg': 32px
+);
+$onboarding-modal-title-size:(
+  'sm': 20px,
+  'md': 20px,
+  'lg': 24px
+);
+$onboarding-modal-title-size-margin:(
+  'sm': 12px,
+  'md': 12px,
+  'lg': 16px
+);
+$onboarding-modal-title-size-height:(
+  'sm': 28px,
+  'md': 28px,
+  'lg': 32px
+);
+$onboarding-modal-title-size-spacing:(
+  'sm': -0.4px,
+  'md': -0.4px,
+  'lg': -0.48px
+);
+
+/**
+ * @param {string} $size - 'sm', 'md', 'lg'
+ * @param {string} $image - 'none', 'top', 'inside', 'left'
+ * @param {string} $image-size - '1/1', '5/4', '4/3', '3/2', '16/10', '16/9', '2/1'
+ * @param {string} $align - 'left', 'center'
+ * @param {boolean} $button
+ * @param {number} $button-amount - 1, 2
+ * @param {string} $button-position - 'row', 'column'
+ * @param {boolean} $helper
+ */
+
+@mixin onboarding-card (
+  $size: 'md',
+  $image: 'inside',
+  $image-size: '4/3',
+  $align: 'left',
+  $button: true,
+  $button-amount: 1,
+  $button-position: 'row',
+  $helper: true
+) {
+  .modal-card {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 40px);
+    max-width: map-get($onboarding-modal-size, $size);
+    width: map-get($onboarding-modal-size, $size) !important;
+    padding: map-get($onboarding-modal-padding-size, $size);
+
+    border-radius: 16px;
+    box-shadow: $shadow-gamma;
+  }
+
+  .close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+
+    outline: 0;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+
+    @include bg-icon('../images/icon/modals/close.svg');
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .close::before,
+  .close::after {
+    content: none;
+  }
+
+  b {
+    display: block;
+    margin: 0 0 map-get($onboarding-modal-title-size-margin, $size);
+
+    @if $align == 'left' {
+      text-align: left;
+    } @else if $align == 'center' {
+      text-align: center;
+    }
+    font-weight: 700;
+    font-size: map-get($onboarding-modal-title-size, $size);
+    line-height: map-get($onboarding-modal-title-size-height, $size);
+    letter-spacing: map-get($onboarding-modal-title-size-spacing, $size);
+    color: #2c2c2c;
+  }
+
+  p {
+    margin: 0 0 24px;
+
+    @if $align == 'left' {
+      text-align: left;
+    } @else if $align == 'center' {
+      text-align: center;
+    }
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.32px;
+    color: #4b4b4b;
+  }
+
+  img,
+  video {
+    @if $image == 'none' {
+      display: none;
+    } @else {
+      display: block;
+
+      @if $image == 'inside' {
+        border-radius: 12px;
+      }
+    }
+
+    @if $image == 'top' {
+      $padding: map-get($onboarding-modal-padding-size, $size);
+      order: -1;
+      display: block;
+      width: calc(100% + #{$padding * 2});
+      max-width: calc(100% + #{$padding * 2});
+      margin: (-$padding) (-$padding) 24px;
+    }
+
+    @if $image-size == '1/1' {
+      aspect-ratio: 1/1;
+    } @else if $image-size == '5/4' {
+      aspect-ratio: 5/4;
+    } @else if $image-size == '4/3' {
+      aspect-ratio: 4/3;
+    } @else if $image-size == '3/2' {
+      aspect-ratio: 3/2;
+    } @else if $image-size == '16/10' {
+      aspect-ratio: 16/10;
+    } @else if $image-size == '16/9' {
+      aspect-ratio: 16/9;
+    } @else if $image-size == '2/1' {
+      aspect-ratio: 2/1;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    @if $image == 'inside' {
+      margin-top: 24px;
+    }
+  }
+  p + form {
+    margin-top: 0;
+  }
+  b + form {
+    margin-top: 0;
+  }
+
+  @if $button {
+    $button-gap-row: 16px;
+    form > button {
+      @include button;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @if $button-amount == 1 {
+        width: 100%;
+      } @else if $button-amount == 2 and $button-position == 'column' {
+        width: 100%;
+      } @else if $button-amount == 2 and $button-position == 'row' {
+        width: calc(50% - (#{$button-gap-row} / 2));
+      }
+      padding: 12px 20px;
+
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -0.16px;
+    }
+
+    form > button + button {
+      @if $button-amount == 2 and $button-position == 'column' {
+        margin-top: 12px;
+      } @else if $button-amount == 2 and $button-position == 'row' {
+        margin-left: $button-gap-row;
+      }
+    }
+
+    .button-green {
+      @include button-green;
+    }
+
+    .button-green-outline {
+      @include button-tone();
+    }
+  } @else {
+    form > button {
+      display: none;
+    }
+  }
+
+  @if $helper {
+    form > div {
+      width: 100%;
+
+      @if $align == 'center' {
+        text-align: center;
+      }
+    }
+
+    form input[type="checkbox"] {
+      @include visually-hidden;
+    }
+
+    form label {
+      position: relative;
+      display: inline-block;
+      padding: 2px 0 2px 36px;
+
+      cursor: pointer;
+      color: #6d6d6d;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: -0.14px;
+    }
+
+    @if $button {
+      form label {
+        margin-top: 24px;
+      }
+    }
+
+    form label > span {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 24px;
+      width: 24px;
+
+      @include bg-icon('../images/icon/checkbox/checkbox-initial.svg');
+    }
+
+    form label > input:checked + span {
+      @include bg-icon('../images/icon/checkbox/checkbox-checked.svg');
+    }
+  } @else {
+    form > div {
+      display: none;
+    }
+  }
+}

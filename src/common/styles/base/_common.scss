@@ -1,0 +1,28 @@
+body {
+  font-family: "OpenSans", sans-serif !important;
+}
+body * {
+  font-family: "OpenSans", sans-serif !important;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #20bd57;
+
+  &:hover {
+    color: #1ca74d;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  height: auto;
+}

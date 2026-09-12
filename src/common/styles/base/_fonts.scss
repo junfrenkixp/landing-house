@@ -1,0 +1,18 @@
+@mixin font($name, $family, $weight, $italic) {
+  $font-dir: '../fonts/';
+  $font-path: $font-dir + $name + '-' + $family;
+
+  @if $italic == '' {
+    $italic: normal;
+  }
+
+  @font-face {
+    font-family: $name;
+    src: url($font-path + '.woff2') format('woff2');
+    font-weight: $weight;
+    font-style: $italic;
+    font-display: swap;
+  }
+}
+
+@include font('OpenSans', 'Light', 300, '');

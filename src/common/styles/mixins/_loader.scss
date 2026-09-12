@@ -1,0 +1,62 @@
+@mixin loader($width: 120px, $color: var(--color-green), $color-second: #dbdff1, $stroke-width: 4px, $speed: .6s) {
+  position: relative;
+  display: block;
+  width: $width;
+  height: $width;
+  animation: none;
+  border: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: $stroke-width solid $color-second;
+    border-bottom-color: $color;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: loader-rotation $speed linear infinite;
+  }
+  @keyframes loader-rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin loader-rounded($width: 120px, $speed: 1.7s, $icon: '#loader-grey', $bgSize1: auto, $bgSize2: $bgSize1, $loaderSize: 100%) {
+  position: relative;
+  display: block;
+  width: $width;
+  height: $width;
+  border: none;
+  border-radius: 50%;
+  animation: none;
+
+  &:before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    height: $loaderSize;
+    width: $loaderSize;
+    background: url("../images/icon/icon-loader.svg#{$icon}") no-repeat 0 0 / #{$bgSize1} #{$bgSize2};
+    animation: loader-rotation $speed linear infinite;
+  }
+
+  @keyframes loader-rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin loader-close-rounded($width: 120px, $speed: 1.7s, $icon: '#loader-grey', $bgSize1: auto, $bgSize2: $bgSize1, $loaderSize: 100%) {
+  @include loader-rounded($width, $speed, $icon, $bgSize1, $bgSize2, $loaderSize);
+}
+

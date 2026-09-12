@@ -1,0 +1,45 @@
+@use "./media" as media;
+
+@mixin basic-container($width: 1150, $padding: 20) {
+  max-width: $width+px;
+  width: 100%;
+  padding-right: $padding+px;
+  padding-left: $padding+px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@mixin container($size: 'xl', $padding: 20px, $boxSizing: border-box) {
+  // If necessary, add a new variable with the container size
+  $content-width-xxl: 100%;
+  $content-width-xl: 1320px;
+  $content-width-md: 738px;
+  $content-width-sm: 380px;
+
+  @if $boxSizing == 'border-box' {
+    $content-width-xxl: calc(#{$content-width-xxl} + #{$padding}*2);
+    $content-width-xl: calc(#{$content-width-xl} + #{$padding}*2);
+    $content-width-md: calc(#{$content-width-md} + #{$padding}*2);
+    $content-width-sm: calc(#{$content-width-sm} + #{$padding}*2);
+  }
+
+  $width: (
+    // Also add the key for this variable to the $width variable
+          'xxl': $content-width-xxl,
+          'xl': $content-width-xl,
+          'md': $content-width-md,
+          'sm': $content-width-sm,
+  );
+
+  max-width: map-get($width, $size);
+  width: 100%;
+  box-sizing: $boxSizing;
+  padding-left: $padding;
+  padding-right: $padding;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media.media-mobile {
+    max-width: 100%;
+  }
+}
