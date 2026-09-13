@@ -1,0 +1,149 @@
+.footer {
+  padding: 23px 0;
+  background-color: #E1EDE6;
+}
+
+.footer-inner {
+  display: flex;
+}
+
+.footer-left {
+  margin-right: 115px;
+}
+
+.footer-logo {
+  width: 143px;
+  height: 35px;
+  margin-bottom: 33px;
+}
+
+.footer-contact-phone {
+  display: inline-block;
+  margin-bottom: 11px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #2C2D35;
+  transition: .3s;
+
+  &:hover {
+    color: #598D66;
+  }
+}
+
+.footer-contacts-info {
+  display: block;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #86928B;
+}
+
+.footer-center {
+  display: flex;
+  gap: 60px;
+  padding-top: 2px;
+}
+
+.footer-col {
+
+}
+
+.footer-title {
+  margin: 0 0 7px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #2C2D35;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-nav-link {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 150%;
+  letter-spacing: 0;
+  color: #86928B;
+  transition: .3s;
+
+  &:hover {
+    color: #598D66;
+  }
+}
+
+.footer-right {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-social-link {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-size: 0;
+  color: var(--color-1);
+
+  &:hover {
+    color: var(--color-2);
+  }
+  &:active {
+    color: var(--color-3);
+  }
+  &:focus {
+    color: var(--color-2);
+  }
+}
+
+.footer-social-link svg {
+  height: 24px;
+  width: 24px;
+  color: inherit;
+  transition: .3s;
+}
+
+.footer-social-link::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: 2px;
+  background-color: var(--color-4);
+  opacity: 0;
+  transition: .3s;
+}
+
+.footer-social-link:focus::after {
+  opacity: 1;
+}
+
+.footer-copyright {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 120%;
+  letter-spacing: 0;
+  color: #86928B;
+}

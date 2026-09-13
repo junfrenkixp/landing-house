@@ -1,0 +1,17 @@
+{% macro catalogItem(item) %}
+  <li class="catalog-item">
+    <img
+      class="catalog-item-img"
+      src="./assets/images/{{ item.img }}.avif"
+      alt="{{ item.author }}, {{ item.name }}"
+      loading="lazy"
+      width="310" height="422">
+    <div class="catalog-item-info">
+      <small class="catalog-item-author">{{ item.author }}</small>
+      <h3 class="catalog-item-name">{{ item.name }}</h3>
+      <p class="catalog-item-descr">{{ item.descr }}</p>
+      <div class="catalog-item-price">{{ item.price }}</div>
+      <button class="button button-outline-green" type="button" aria-label="Добавить {{ item.name }} в корзину">В корзину</button>
+    </div>
+  </li>
+{% endmacro %}

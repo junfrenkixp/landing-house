@@ -18,7 +18,7 @@ export const dev = series(
   parallel(twig, style),
   parallel(fonts),
   parallel(images),
-  parallel(video),
+  //parallel(video),
   parallel(sprite),
   watch
 );
