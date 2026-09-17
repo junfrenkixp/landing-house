@@ -20,6 +20,9 @@
                     </li>
                 </ul>
             </nav>
+            <button class="button button-burger">
+              <span></span>
+            </button>
             <button class="button header-button-basket" data-add-counter="1">
                 Корзина
                 <svg>
@@ -30,3 +33,13 @@
         </div>
     </div>
 </header>
+
+<script>
+  const button = document.querySelector('.button-burger');
+  const nav = document.querySelector('.header-nav');
+
+  button.addEventListener('click', () => {
+    button.classList.toggle('is-active');
+    nav.classList.toggle('is-active');
+  })
+</script>

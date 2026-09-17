@@ -35,6 +35,9 @@
                     </li>
                 </ul>
             </nav>
+            <button class="button button-burger">
+              <span></span>
+            </button>
             <button class="button header-button-basket" data-add-counter="1">
                 Корзина
                 <svg>
@@ -45,6 +48,16 @@
         </div>
     </div>
 </header>
+
+<script>
+  const button = document.querySelector('.button-burger');
+  const nav = document.querySelector('.header-nav');
+
+  button.addEventListener('click', () => {
+    button.classList.toggle('is-active');
+    nav.classList.toggle('is-active');
+  })
+</script>
     <section class="hero">
     <div class="container">
         <div class="hero-inner">
@@ -280,6 +293,25 @@
           </div>
   </div>
 </section>
+
+<script>
+  const tabs = document.querySelectorAll('.catalog-tab-button');
+  const tabsContent = document.querySelectorAll('.catalog-content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(tab => {tab.classList.remove('is-active')});
+      tab.classList.add('is-active');
+
+      const dataTab = tab.dataset.tab;
+
+      tabsContent.forEach(tabContent => {
+        const dataTabContent = tabContent.dataset.tabContent;
+        tabContent.classList.toggle('is-active', dataTab === dataTabContent);
+      })
+    })
+  })
+</script>
     <section class="new-collection">
   <div class="container">
     <h2 class="new-collection-title">Новая коллекция французских авторов</h2>
@@ -386,30 +418,13 @@
             </a>
           </li>
         </ul>
-        <small class="footer-copyright">Ink. House ®</small>
-        <small class="footer-copyright">All rights reserved</small>
+        <div class="footer-copyright-wrap">
+          <small class="footer-copyright">Ink. House ®</small>
+          <small class="footer-copyright">All rights reserved</small>
+        </div>
       </div>
     </div>
   </div>
 </footer>
-
-    <script>
-      const tabs = document.querySelectorAll('.catalog-tab-button');
-      const tabsContent = document.querySelectorAll('.catalog-content');
-
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          tabs.forEach(tab => {tab.classList.remove('is-active')});
-          tab.classList.add('is-active');
-
-          const dataTab = tab.dataset.tab;
-
-          tabsContent.forEach(tabContent => {
-            const dataTabContent = tabContent.dataset.tabContent;
-            tabContent.classList.toggle('is-active', dataTab === dataTabContent);
-          })
-        })
-      })
-    </script>
     </body>
 </html>

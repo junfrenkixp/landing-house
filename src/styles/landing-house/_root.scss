@@ -1,3 +1,5 @@
+@use "common/styles/mixins/_media" as media;
+
 @font-face {
   font-family: 'Raleway';
   src: url('../fonts/Raleway-variable.woff2') format('woff2-variations');
@@ -8,12 +10,12 @@
 
 :root {
   --main-bg: #F4F6F5;
-  --header-bg: #E1EDE6;
-  --color-1: #2C2D35;
-  --color-2: #598D66;
-  --color-3: #376B44;
-  --color-4: #D4E8D9;
-  --color-5: #86928B;
+  --bg-alpha: #E1EDE6;
+  --bg-beta: #D4E8D9;
+  --text-alpha-1: #2C2D35;
+  --text-beta-1: #598D66;
+  --text-beta-2: #86928B;
+  --color-alpha-1: #376B44;
 }
 
 * {
@@ -25,15 +27,21 @@ body {
   background-color: var(--main-bg);
 }
 
-// ::selection {
-//   background-color: var(--color-4);
-// }
-
 .container {
   max-width: 1150px;
   width: 100%;
   padding: 0 20px;
   margin: 0 auto;
+
+  @include media.pre-media-tablet {
+    max-width: 730px;
+  }
+  @include media.pre-media-mobile-el {
+    max-width: 550px;
+  }
+  @include media.media-mobile-m {
+    padding: 0 15px;
+  }
 }
 
 .button {
@@ -42,6 +50,7 @@ body {
   border: 0;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
   background-color: transparent;
   transition: .3s;
 }
@@ -49,21 +58,21 @@ body {
 .button-outline-green {
   padding: 0 59px;
   height: 65px;
-  border: 1px solid var(--color-2);
+  border: 1px solid var(--text-beta-1);
   font-weight: 500;
   font-size: 20px;
   line-height: 65px;
   letter-spacing: 0;
-  color: var(--color-2);
+  color: var(--text-beta-1);
 
   &:hover {
     color: #F4F6F5;
-    background-color: var(--color-2);
+    background-color: var(--text-beta-1);
   }
   &:active {
-    border-color: var(--color-3);
+    border-color: var(--color-alpha-1);
     color: #fff;
-    background-color: var(--color-3);
+    background-color: var(--color-alpha-1);
   }
 }
 
@@ -74,7 +83,7 @@ body {
   font-size: 20px;
   line-height: 65px;
   letter-spacing: 0;
-  color: var(--color-1);
+  color: var(--text-alpha-1);
   background-color: #EEDB6D;
 
   &:hover {

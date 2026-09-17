@@ -1,9 +1,15 @@
+@use "common/styles/mixins/media" as media;
+
 .new-collection {
   padding: 70px 0;
   background-image: url('../images/collection-bg.avif');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  @include media.pre-media-mobile-el {
+    padding: 50px 0;
+  }
 }
 
 .new-collection-title {
@@ -14,11 +20,31 @@
   font-size: 40px;
   line-height: 100%;
   letter-spacing: -0.01em;
-  color: #F4F6F5;
+  color: var(--main-bg);
   background-image: url('../images/star.svg');
   background-position: left center;
   background-repeat: no-repeat;
   background-size: 80px;
+
+  @include media.pre-media-tablet {
+    max-width: 430px;
+    padding-left: 80px;
+    margin: 0 0 30px;
+    font-size: 30px;
+    letter-spacing: 0;
+    background-size: 60px;
+  }
+  @include media.pre-media-mobile-el {
+    max-width: 400px;
+    padding-left: 70px;
+    margin: 0 0 21px;
+    font-size: 24px;
+    background-size: 50px;
+  }
+  @include media.media-mobile-m {
+    padding-left: 60px;
+    background-position: left top;
+  }
 }
 
 .new-collection-descr {
@@ -29,13 +55,53 @@
   line-height: 150%;
   letter-spacing: -0.01em;
   color: #fff;
+
+  @include media.pre-media-tablet {
+    max-width: 100%;
+  }
+  @include media.pre-media-mobile-el {
+    max-width: 99%;
+    margin: 0 0 15px;
+    font-size: 16px;
+    line-height: 140%;
+  }
+  @include media.media-mobile-m {
+    line-height: 137%;
+  }
 }
 
 .new-collection-descr + .new-collection-descr {
   margin: 0 0 60px;
+
+  @include media.pre-media-tablet {
+    margin: 0 0 30px;
+  }
+  @include media.pre-media-mobile-el {
+    margin: 0 0 19px;
+  }
+  @include media.media-mobile-m {
+    margin: 0 0 30px;
+  }
 }
 
 .new-collection .button {
   display: inline-block;
   min-width: 257px;
+
+  @include media.pre-media-tablet {
+    min-width: 210px;
+    height: 60px;
+    padding: 0 30px;
+    line-height: 60px;
+  }
+  @include media.pre-media-mobile-el {
+    min-width: 190px;
+    height: 50px;
+    padding: 0 20px;
+    font-size: 18px;
+    line-height: 50px;
+  }
+  @include media.media-mobile-m {
+    width: 100%;
+  }
 }

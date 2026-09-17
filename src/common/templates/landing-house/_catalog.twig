@@ -162,3 +162,22 @@
     </div>
   </div>
 </section>
+
+<script>
+  const tabs = document.querySelectorAll('.catalog-tab-button');
+  const tabsContent = document.querySelectorAll('.catalog-content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(tab => {tab.classList.remove('is-active')});
+      tab.classList.add('is-active');
+
+      const dataTab = tab.dataset.tab;
+
+      tabsContent.forEach(tabContent => {
+        const dataTabContent = tabContent.dataset.tabContent;
+        tabContent.classList.toggle('is-active', dataTab === dataTabContent);
+      })
+    })
+  })
+</script>

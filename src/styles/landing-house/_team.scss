@@ -1,5 +1,17 @@
+@use "common/styles/mixins/media" as media;
+
 .team {
   padding: 70px 0;
+
+  @include media.pre-media-tablet {
+    padding: 70px 0 66px;
+  }
+  @include media.pre-media-mobile-el {
+    padding: 50px 0 47px;
+  }
+  @include media.media-mobile-m {
+    padding: 58px 0 91px;
+  }
 }
 
 .team-inner {
@@ -13,6 +25,23 @@
   background-position: left center;
   background-repeat: no-repeat;
   background-size: contain;
+
+  @include media.media-desktop {
+    padding-left: 48%;
+  }
+  @include media.pre-media-tablet {
+    padding-left: 0;
+    padding-top: 79%;
+    background-position: top left;
+    background-size: 74%;
+  }
+  @include media.pre-media-mobile-el {
+    padding-top: calc(78% + 2px);
+  }
+  @include media.media-mobile-m {
+    padding-top: calc(109% + 2px);
+    background-size: 104%;
+  }
 }
 
 .team-title {
@@ -21,7 +50,19 @@
   font-size: 40px;
   line-height: 110%;
   letter-spacing: 0;
-  color: #2C2D35;
+  color: var(--text-alpha-1);
+
+  @include media.pre-media-tablet {
+    margin: 0 0 29px;
+    font-size: 30px;
+  }
+  @include media.pre-media-mobile-el {
+    margin: 0 0 19px;
+    font-size: 24px;
+  }
+  @include media.media-mobile-m {
+    margin: 0 0 20px;
+  }
 }
 
 .team-descr {
@@ -30,7 +71,21 @@
   font-size: 18px;
   line-height: 150%;
   letter-spacing: -0.01em;
-  color: #2C2D35;
+  color: var(--text-alpha-1);
+
+  @include media.pre-media-tablet {
+    margin: 0 0 30px;
+  }
+  @include media.pre-media-mobile-el {
+    margin: 0 0 18px;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0;
+  }
+  @include media.media-mobile-m {
+    margin: 0 0 19px;
+    line-height: 138%;
+  }
 }
 
 .team-list {
@@ -40,6 +95,10 @@
   margin: 0;
   padding: 0;
   list-style: none;
+
+  @include media.media-mobile-m {
+    gap: 25px;
+  }
 }
 
 .team-list-img {

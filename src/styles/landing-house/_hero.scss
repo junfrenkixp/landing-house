@@ -1,3 +1,5 @@
+@use "common/styles/mixins/_media" as media;
+
 .hero-inner {
   display: flex;
   flex-direction: column;
@@ -9,6 +11,27 @@
   background-position: left center;
   background-repeat: no-repeat;
   background-size: contain;
+
+  @include media.pre-media-tablet {
+    min-height: 0;
+    padding-left: calc(52% + 1px);
+    padding-top: 35px;
+    padding-bottom: 37px;
+    margin-right: -7px;
+  }
+  @include media.pre-media-mobile-el {
+    padding-left: 44%;
+    margin-right: -18px;
+    padding-top: 0;
+    margin-top: 51px;
+    padding-bottom: 0;
+  }
+  @include media.media-mobile-m {
+    padding-left: 0;
+    margin-right: 0;
+    margin-top: 61px;
+    background-image: none;
+  }
 }
 
 .hero-title {
@@ -18,11 +41,25 @@
   font-size: 60px;
   line-height: 110%;
   letter-spacing: -0.01em;
-  color: var(--color-1);
+  color: var(--text-alpha-1);
+
+  @include media.pre-media-tablet {
+    font-size: 40px;
+    line-height: 100%;
+  }
+  @include media.pre-media-mobile-el {
+    margin: 0 0 10px;
+    font-size: 36px;
+  }
+  @include media.media-mobile-m {
+    margin: 0 0 19px;
+    font-size: 30px;
+    letter-spacing: 0;
+  }
 }
 
 .hero-title span {
-  color: var(--color-2);
+  color: var(--text-beta-1);
 }
 
 .hero-descr {
@@ -31,5 +68,37 @@
   font-size: 18px;
   line-height: 150%;
   letter-spacing: -0.01em;
-  color: var(--color-5);
+  color: var(--text-beta-2);
+
+  @include media.pre-media-tablet {
+    margin: 0 0 40px;
+  }
+  @include media.pre-media-mobile-el {
+    margin: 0 0 10px;
+    padding-right: 60px;
+    font-size: 16px;
+  }
+  @include media.media-mobile-m {
+    margin-bottom: 40px;
+    padding-right: 0;
+    font-size: 14px;
+    letter-spacing: 0;
+  }
+}
+
+.hero .button {
+  @include media.pre-media-tablet {
+    height: 60px;
+    padding: 0 51px;
+    line-height: 60px;
+  }
+  @include media.pre-media-mobile-el {
+    height: 50px;
+    padding: 0 40px;
+    font-size: 18px;
+    line-height: 50px;
+  }
+  @include media.media-mobile-m {
+    padding: 0 28px;
+  }
 }
