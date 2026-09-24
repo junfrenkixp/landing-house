@@ -1,8 +1,8 @@
 # Landing Ink. House
 
-### [Ссылка на проект]()
+### [Project link](https://junfrenkixp.github.io/landing-house/)
 
-### [Ссылка на макет в Figma](https://www.figma.com/design/SjHvI8W1yzwJjzyUrCPpsI/House?node-id=0-1&node-type=canvas&t=01U7Qt08oombciOf-0)
+### [Link to the layout in Figma](https://www.figma.com/design/SjHvI8W1yzwJjzyUrCPpsI/House?node-id=0-1&node-type=canvas&t=01U7Qt08oombciOf-0)
 
 ## About the Project
 
