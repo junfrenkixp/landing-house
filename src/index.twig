@@ -1,25 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="format-detection" content="address=no">
-</head>
-</html>
-<body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <h1>Landing House</h1>
-            <ol>
-                <li>
-                    <a href="landing-house.html">Landing House</a>
-                </li>
-            </ol>
-        </div>
-    </div>
-</div>
-</body>
+{% extends 'common/templates/layout/_default.twig' %}
+
+{% block title %}Ink. House{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="./assets/css/landing-house.css">
+{% endblock %}
+
+{% block content %}
+    {% include 'common/templates/landing-house/_header.twig' %}
+    {% include 'common/templates/landing-house/_hero.twig' %}
+    {% include 'common/templates/landing-house/_catalog.twig' %}
+    {% include 'common/templates/landing-house/_new-collection.twig' %}
+    {% include 'common/templates/landing-house/_team.twig' %}
+    {% include 'common/templates/landing-house/_footer.twig' %}
+{% endblock %}
